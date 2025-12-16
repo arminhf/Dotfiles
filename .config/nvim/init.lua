@@ -1,0 +1,34 @@
+-- Bootstrap 'mini.nvim'
+local path_package = vim.fn.stdpath("data") .. "/site/"
+local mini_path = path_package .. "pack/deps/start/mini.nvim"
+
+if not vim.loop.fs_stat(mini_path) then
+  vim.cmd('echo "Installing [`mini.nvim`](../doc/mini-nvim.qmd#mini.nvim)" | redraw')
+  local clone_cmd = {
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/nvim-mini/mini.nvim",
+    mini_path,
+  }
+  vim.fn.system(clone_cmd)
+  vim.cmd("packadd mini.nvim | helptags ALL")
+  vim.cmd('echo "Installed [`mini.nvim`](../doc/mini-nvim.qmd#mini.nvim)" | redraw')
+end
+
+-- Set up 'mini.deps'
+require("mini.deps").setup()
+
+-- Define main config table to be able to pass data between scripts
+_G.Config = {}
+
+-- Define custom autocommand group
+local gr = vim.api.nvim_create_augroup("custom-config", {})
+
+_G.Config.new_autocmd = function(event, pattern, callback, desc)
+  local opts = { group = gr, pattern = pattern, callback = callback, desc = desc }
+  vim.api.nvim_create_autocmd(event, opts)
+end
+
+-- Define custom "`now` or `later`" helper
+_G.Config.now_if_args = vim.fn.argc(-1) > 0 and MiniDeps.now or MiniDeps.later

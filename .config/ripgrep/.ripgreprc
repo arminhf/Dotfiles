@@ -1,0 +1,5 @@
+# Search in Hidden files but exclude unwanted directories
+--hidden
+--glob=!.git/*
+# Use smart case search
+--smart-case

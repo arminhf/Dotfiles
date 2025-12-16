@@ -1,0 +1,75 @@
+* {
+  font-family: "FontAwesome", "CommitMono Nerd Font";
+  font-size: 17px;
+}
+window#waybar {
+  background: #000000;
+  border-bottom: 1px solid rgba(100, 114, 125, 0.5);
+  color: white;
+}
+
+tooltip {
+  background: #000000;
+  border: 1px solid rgba(100, 114, 125, 0.5);
+}
+tooltip label {
+  color: white;
+}
+
+#workspaces button {
+  padding: 0px;
+  color: white;
+  border-bottom: 0px solid transparent;
+}
+
+#workspaces button.focused {
+  background: #64727d;
+  border-bottom: 3px solid white;
+}
+
+#mode,
+#clock,
+#battery,
+#idle_inhibitor,
+#backlight,
+#network,
+#bluetooth,
+#workspaces,
+#cpu,
+#memory,
+#temperature {
+  padding: 0 10px;
+  margin: 0 0px;
+}
+
+#mode {
+  background: #64727d;
+  border-bottom: 3px solid white;
+}
+
+#clock {
+  background-color: #64727d;
+}
+
+#battery {
+  background-color: #ffffff;
+  color: black;
+}
+
+#idle_inhibitor {
+  background-color: #7aa2f7;
+}
+
+#backlight {
+  background-color: #e0af68;
+}
+
+#battery.charging {
+  color: white;
+  background-color: #26a65b;
+}
+
+#battery.warning:not(.charging) {
+  background: #f53c3c;
+  color: white;
+}
